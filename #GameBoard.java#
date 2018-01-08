@@ -5,7 +5,7 @@ import java.awt.KeyEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-public class GameBoard{
+public class GameBoardextends JFrame {
 
     
 
