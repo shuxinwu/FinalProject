@@ -1,0 +1,10 @@
+import java.util*;
+public class Shapes{
+    private Tetrominoes shape;
+    private int [][] coords;
+
+    public Shapes(){
+	coords = new int[4][2];
+    }
+    
+}
