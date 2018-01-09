@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 enum Tetrominoes{
     ZShape(new int[][]{{0,-1},{0,0},{-1,0},{1,-1}}),
     SShape(new int[][]{{0,-1},{0,0},{1,0},{-1,-1}}),
@@ -11,4 +13,6 @@ enum Tetrominoes{
     private Tetrominoes(int[][] coords ){
 	this.coords = coords;
     }
+
+    private Color[] tetroColors = { Color.red, Color.green, Color.pink, Color.cyan, Color.yellow, Color.orange, Color.blue};
 }
