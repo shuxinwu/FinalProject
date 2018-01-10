@@ -1,4 +1,6 @@
 import java.awt.Color;
+import java.awt.Point;
+
 
 public class Tetrominoes{
 
@@ -59,10 +61,20 @@ public class Tetrominoes{
 
   private Color[] tetroColors = { Color.red, Color.green, Color.pink, Color.cyan, Color.yellow, Color.orange, Color.blue };
 
-  private int currentPiece;
+  private int currentBlock;
   private int orientation;
 
-  // +1 clockwise -1 counterclockwise
+  private int xPos; //placeholder
+
+  public void makeBlock(){
+    currentBlock = (int)(Math.random() * 6);
+    orientation = 0;
+
+    // xPos = center x of board;
+  }
+
+  // up key
+  // clockwise only for now
   public void rotate(int a){
     if (a == 1){
       if (orientation == 3){
@@ -70,14 +82,26 @@ public class Tetrominoes{
       }
       orientation++;
     }
+    /*
     if (a == -1){
       if (orientation == 0){
         orientation = 3;
       }
       orientation--;
     }
+    */
   }
 
-  // rand piece rand orientation
+  // right left keys
+  // +1 right -1 left
+  public void move(int a){
+    // if not at board edges
+    if (a == 1){
+      xPos++;
+    }
+    if (a == -1){
+      xPos--;
+    }
+  }
 
 }
