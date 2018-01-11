@@ -6,6 +6,7 @@ public class Tetrominoes{
 
   // [currentBlock][orientation][point]
   // all four orientations, clockwise
+  // for each point, fill rect, color in Color[]
   private Point[][][] Tetrominoes = {
     // Z shape
     {
