@@ -4,7 +4,7 @@ import java.awt.Point;
 
 public class Tetrominoes{
 
-  // shapes in the order above
+  // [currentBlock][orientation][point]
   // all four orientations, clockwise
   private Point[][][] Tetrominoes = {
     // Z shape
