@@ -2,8 +2,10 @@ public class ScoreBoard{
 
   private int score = 0;
   private int linesCleared = 0;
-  private int time;
   private boolean tetris;
+  private long startTime;
+  private long stopTime;
+  private boolean running;
 
   // make score
   // count score
@@ -33,4 +35,25 @@ public class ScoreBoard{
   }
 
   // track time
+  public void start(){
+    this.startTime = System.currentTimeMillis();
+    this.running = true;
+  }
+
+  public void stop(){
+    this.stopTime = System.currentTimeMillis();
+    this.running = false;
+  }
+
+  public long getTime(){
+    long time;
+    if (running){
+      time = System.currentTimeMillis() - startTime;
+    }
+    else{
+      time = stopTime - startTime;
+    }
+    return time;
+  }
+
 }
