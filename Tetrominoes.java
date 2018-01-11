@@ -75,22 +75,22 @@ public class Tetrominoes{
   }
 
   // up key
-  // clockwise only for now
+  // other key tbd
   public void rotate(int a){
     if (a == 1){
       if (orientation == 3){
-        orientation = 0;
+        orientation = -1;
       }
       orientation++;
     }
-    /*
+
     if (a == -1){
       if (orientation == 0){
-        orientation = 3;
+        orientation = 4;
       }
       orientation--;
     }
-    */
+
   }
 
   // right left keys
