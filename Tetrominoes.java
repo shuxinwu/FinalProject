@@ -58,7 +58,7 @@ public class Tetrominoes{
       { new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(2, 2) }
     }
 
-  }
+  };
 
   private Color[] tetroColors = { Color.red, Color.green, Color.pink, Color.cyan, Color.yellow, Color.orange, Color.blue };
 
