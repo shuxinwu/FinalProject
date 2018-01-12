@@ -17,6 +17,7 @@ public class GameBoard extends JFrame implements ActionListener{
     private Boolean isfalling;
     //  private Tetrominoes shape;
     private Point [] curShape;
+    private Point [] nextShape;
 
 	
     public GameBoard(){
@@ -28,6 +29,7 @@ public class GameBoard extends JFrame implements ActionListener{
 	this.setContentPane(canvas);
 	isfalling = true;
 	curShape = Tetrominoes[(int)(Math.random()*4)];
+	nextShape = Tetrominoes[(int)(Math.random()*4)];
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
 	setSize(300,600);
 	setTitle("Tetris");
@@ -50,7 +52,7 @@ public class GameBoard extends JFrame implements ActionListener{
     }
     public void update(){
 	for(int x =0 ; x< curShape.length ; x++){
-	    if (curShape[x].getY() == 20){
+	    if (curShape[x].getY() == 20 ){
 		isfalling = false;
 	    }
 	}
@@ -58,6 +60,10 @@ public class GameBoard extends JFrame implements ActionListener{
 	    for (int x = 0 ; x < curShape.length;x++){
 		curShape[x].translate(0,1);
 	    }
+	}
+	else{curShape = nextShape;
+	    nextShape = Tetrominoes[(int)(Math.random()*4)];
+	    isfalling =true;
 	}
     }
 
@@ -87,6 +93,7 @@ public class GameBoard extends JFrame implements ActionListener{
     public static void main(String[] args){
 	new GameBoard();
 	System.out.println();
+	
     }
 }
  
