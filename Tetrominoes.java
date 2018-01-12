@@ -10,17 +10,17 @@ public class Tetrominoes{
   private Point[][][] Tetrominoes = {
     // Z shape
     {
-      { new Point(0, 0), new Point(1, 0), new Point(1, 1), new Point(2, 1) },
-      { new Point(1, 0), new Point(0, 1), new Point(1, 1), new Point(0, 2) },
-      { new Point(0, 0), new Point(1, 0), new Point(1, 1), new Point(2, 1) },
-      { new Point(1, 0), new Point(0, 1), new Point(1, 1), new Point(0, 2) }
-    },
-    // S shape
-    {
       { new Point(1, 0), new Point(2, 0), new Point(0, 1), new Point(1, 1) },
       { new Point(0, 0), new Point(0, 1), new Point(1, 1), new Point(1, 2) },
       { new Point(1, 0), new Point(2, 0), new Point(0, 1), new Point(1, 1) },
       { new Point(0, 0), new Point(0, 1), new Point(1, 1), new Point(1, 2) }
+    },
+    // S shape
+    {
+      { new Point(0, 0), new Point(1, 0), new Point(1, 1), new Point(2, 1) },
+      { new Point(1, 0), new Point(0, 1), new Point(1, 1), new Point(0, 2) },
+      { new Point(0, 0), new Point(1, 0), new Point(1, 1), new Point(2, 1) },
+      { new Point(1, 0), new Point(0, 1), new Point(1, 1), new Point(0, 2) }
     },
     // T shape
     {
@@ -46,16 +46,16 @@ public class Tetrominoes{
     // L shape
     {
       { new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(2, 2) },
-      { new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(0, 2) },
+      { new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(2, 0) },
       { new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(0, 0) },
-      { new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(2, 0) }
+      { new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(0, 2) }
     },
     // J shape
     {
       { new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(2, 0) },
-      { new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(2, 2) },
+      { new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(0, 0) },
       { new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(0, 2) },
-      { new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(0, 0) }
+      { new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(2, 2) }
     }
 
   }
