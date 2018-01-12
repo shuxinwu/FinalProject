@@ -16,7 +16,9 @@ public class GameBoard extends JFrame implements ActionListener{
     private Timer timer;
     private Boolean isfalling;
     //  private Tetrominoes shape;
-    
+    private Point [] curShape;
+
+	
     public GameBoard(){
 	setFocusable(true);
 	//	shape = new Tetrominoes();
@@ -25,6 +27,7 @@ public class GameBoard extends JFrame implements ActionListener{
 	Container c = getContentPane();
 	this.setContentPane(canvas);
 	isfalling = true;
+	curShape = Tetrominoes[(int)(Math.random()*4)];
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
 	setSize(300,600);
 	setTitle("Tetris");
@@ -46,14 +49,14 @@ public class GameBoard extends JFrame implements ActionListener{
 	//	repaint();	    
     }
     public void update(){
-	for(int x =0 ; x< Tetrominoes[0].length ; x++){
-	    if (Tetrominoes[0][x].getY() == 20){
+	for(int x =0 ; x< curShape.length ; x++){
+	    if (curShape[x].getY() == 20){
 		isfalling = false;
 	    }
 	}
 	if(isfalling){	
-	    for (int x = 0 ; x < Tetrominoes[0].length;x++){
-		Tetrominoes[0][x].translate(0,1);
+	    for (int x = 0 ; x < curShape.length;x++){
+		curShape[x].translate(0,1);
 	    }
 	}
     }
@@ -64,8 +67,8 @@ public class GameBoard extends JFrame implements ActionListener{
 	    g.setColor(Color.BLACK);
 	    g.fillRect(0,0,200,400);
 	    g.setColor(Color.RED);
-	    for(int x = 0; x < Tetrominoes[0].length;x++){
-		g.fillRect(100-(int)Tetrominoes[0][x].getX() *20,(int)Tetrominoes[0][x].getY()*20, 20, 20);
+	    for(int x = 0; x < curShape.length;x++){
+		g.fillRect(100-(int)curShape[x].getX() *20,(int)curShape[x].getY()*20, 20, 20);
 	    }
 	    
 	}
@@ -83,6 +86,7 @@ public class GameBoard extends JFrame implements ActionListener{
 
     public static void main(String[] args){
 	new GameBoard();
+	System.out.println();
     }
 }
  
