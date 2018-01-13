@@ -41,13 +41,17 @@ public class GameBoard extends JFrame implements KeyListener{
       // faster move down
       System.out.println("down");
     }
-    if(a == KeyEvent.VK_SPACE){
+    if(a == KeyEvent.VK_SPACE || a == KeyEvent.VK_NUMPAD5){
       // instant drop
       System.out.println("drop");
     }
     if(a == KeyEvent.VK_Z){
       // rotate(-1);
       System.out.println("rotate cc");
+    }
+     if(a == KeyEvent.VK_P){
+      // pause
+      System.out.println("pause");
     }
   }
 
