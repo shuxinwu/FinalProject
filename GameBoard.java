@@ -25,29 +25,29 @@ public class GameBoard extends JFrame implements KeyListener{
   public void keyReleased(KeyEvent e){}
   public void keyPressed(KeyEvent e){
     int a = e.getKeyCode();
-    if(a == KeyEvent.VK_UP){
+    if(a == KeyEvent.VK_UP || a == KeyEvent.VK_NUMPAD8){
       //   rotate(1);
-      System.out.println("up");
+      System.out.println("rotate c");
     }
-    if(a == KeyEvent.VK_RIGHT){
+    if(a == KeyEvent.VK_RIGHT || a == KeyEvent.VK_NUMPAD6){
       //   move(1);
       System.out.println("right");
     }
-    if(a == KeyEvent.VK_LEFT){
+    if(a == KeyEvent.VK_LEFT || a == KeyEvent.VK_NUMPAD4){
       //     move(-1);
       System.out.println("left");
     }
-    if(a == KeyEvent.VK_DOWN){
+    if(a == KeyEvent.VK_DOWN || a == KeyEvent.VK_NUMPAD2){
       // faster move down
       System.out.println("down");
     }
     if(a == KeyEvent.VK_SPACE){
       // instant drop
-      System.out.println("space");
+      System.out.println("drop");
     }
     if(a == KeyEvent.VK_Z){
       // rotate(-1);
-      System.out.println("z");
+      System.out.println("rotate cc");
     }
   }
 
