@@ -31,10 +31,16 @@ public class GameBoard extends JFrame implements KeyListener{
     }
     if(a == KeyEvent.VK_RIGHT || a == KeyEvent.VK_NUMPAD6){
       //   move(1);
+      // for (int x = 0 ; x < curShape.length;x++){
+      //	 curShape[x].translate(1,0);
+      // }
       System.out.println("right");
     }
     if(a == KeyEvent.VK_LEFT || a == KeyEvent.VK_NUMPAD4){
       //     move(-1);
+      // for (int x = 0 ; x < curShape.length;x++){
+      //	 curShape[x].translate(-1,0);
+      // }
       System.out.println("left");
     }
     if(a == KeyEvent.VK_DOWN || a == KeyEvent.VK_NUMPAD2){
