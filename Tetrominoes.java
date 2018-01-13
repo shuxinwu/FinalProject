@@ -99,6 +99,7 @@ public class Tetrominoes{
     Tetrominoes test = new Tetrominoes();
     System.out.println(test.getOrientation());
     test.rotate(-1);
+    System.out.println(test.getOrientation());
     System.out.println(test.getCurrentBlock());
 
   }
