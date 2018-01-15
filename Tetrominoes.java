@@ -10,17 +10,17 @@ public class Tetrominoes{
   private Point[][][] Tetrominoes = {
     // Z shape
     {
-      { new Point(0, 0), new Point(1, 0), new Point(1, 1), new Point(2, 1) },
-      { new Point(1, 0), new Point(0, 1), new Point(1, 1), new Point(0, 2) },
-      { new Point(0, 0), new Point(1, 0), new Point(1, 1), new Point(2, 1) },
-      { new Point(1, 0), new Point(0, 1), new Point(1, 1), new Point(0, 2) }
-    },
-    // S shape
-    {
       { new Point(1, 0), new Point(2, 0), new Point(0, 1), new Point(1, 1) },
       { new Point(0, 0), new Point(0, 1), new Point(1, 1), new Point(1, 2) },
       { new Point(1, 0), new Point(2, 0), new Point(0, 1), new Point(1, 1) },
       { new Point(0, 0), new Point(0, 1), new Point(1, 1), new Point(1, 2) }
+    },
+    // S shape
+    {
+      { new Point(0, 0), new Point(1, 0), new Point(1, 1), new Point(2, 1) },
+      { new Point(1, 0), new Point(0, 1), new Point(1, 1), new Point(0, 2) },
+      { new Point(0, 0), new Point(1, 0), new Point(1, 1), new Point(2, 1) },
+      { new Point(1, 0), new Point(0, 1), new Point(1, 1), new Point(0, 2) }
     },
     // T shape
     {
@@ -46,36 +46,34 @@ public class Tetrominoes{
     // L shape
     {
       { new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(2, 2) },
-      { new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(0, 2) },
+      { new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(2, 0) },
       { new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(0, 0) },
-      { new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(2, 0) }
+      { new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(0, 2) }
     },
     // J shape
     {
       { new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(2, 0) },
-      { new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(2, 2) },
+      { new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(0, 0) },
       { new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(0, 2) },
-      { new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(0, 0) }
+      { new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(2, 2) }
     }
 
-  }
+  };
 
   private Color[] tetroColors = { Color.red, Color.green, Color.pink, Color.cyan, Color.yellow, Color.orange, Color.blue };
 
   private int currentBlock;
   private int orientation;
 
-  private int xPos; //placeholder
 
-  public void makeBlock(){
+  public Tetrominoes(){
     currentBlock = (int)(Math.random() * 6);
     orientation = 0;
 
-    // xPos = center x of board;
   }
 
-  // up key
-  // other key tbd
+  // up or 8 clockwise
+  // z counterclockwise
   public void rotate(int a){
     if (a == 1){
       if (orientation == 3){
@@ -93,16 +91,32 @@ public class Tetrominoes{
 
   }
 
+  public int getOrientation(){ return orientation; }
+  public int getCurrentBlock(){ return currentBlock; }
+
+  /*
+  public static void main(String[] args){
+    Tetrominoes test = new Tetrominoes();
+    System.out.println(test.getOrientation());
+    test.rotate(-1);
+    System.out.println(test.getOrientation());
+    System.out.println(test.getCurrentBlock());
+
+  }
+
   // right left keys
   // +1 right -1 left
   public void move(int a){
     // if not at board edges
+
     if (a == 1){
-      xPos++;
+
     }
     if (a == -1){
-      xPos--;
+
     }
   }
+  */
+
 
 }
