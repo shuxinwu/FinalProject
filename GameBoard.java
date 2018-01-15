@@ -118,7 +118,8 @@ public class GameBoard extends JFrame implements ActionListener,KeyListener{
 
     public static void main(String[] args){
 	new GameBoard();
-	System.out.println();
+	Tetrominoes a = new Tetrominoes();
+	System.out.println(a);
 	
     }
 }

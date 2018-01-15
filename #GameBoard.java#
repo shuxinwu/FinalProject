@@ -13,11 +13,11 @@ public class GameBoard extends JFrame implements ActionListener,KeyListener{
     private Boolean isfalling;
     private Point [] curShape;
     private Point [] nextShape;
-    private Color [][] well;
-    
+
 	
     public GameBoard(){
 	setFocusable(true);
+	//	shape = new Tetrominoes();
 	canvas = new DrawCanvas();
 	canvas.setPreferredSize(new Dimension(200,400));
 	Container c = getContentPane();
@@ -118,6 +118,7 @@ public class GameBoard extends JFrame implements ActionListener,KeyListener{
 
     public static void main(String[] args){
 	new GameBoard();
+
 	System.out.println();
 	
     }
