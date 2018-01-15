@@ -3,7 +3,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.Point;
 
-public class GameBoard extends JFrame implements ActionListener{
+
+public class GameBoard extends JFrame implements ActionListener,KeyListener{
     private static final int BOARD_WIDTH = 10;
     private static final int BOARD_LENGTH = 20;
     private DrawCanvas canvas;
@@ -34,7 +35,7 @@ public class GameBoard extends JFrame implements ActionListener{
 	setSize(300,600);
 	setTitle("Tetris");
 	setVisible(true);
-	//addKeyListener(new KeyAdapter());
+   this.addKeyListener(this);
 	ActionListener a = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
 		    update();   
@@ -81,20 +82,48 @@ public class GameBoard extends JFrame implements ActionListener{
     }
     
 	
-    /*
-    public void keyPressed(KeyEvent e){
-	switch(evt.getKeyCode()){
-	case KeyEvent.VK_DOWN: moveDown();
-	    break;
-	}
+  public void keyTyped(KeyEvent e){}
+  public void keyReleased(KeyEvent e){}
+  public void keyPressed(KeyEvent e){
+    int a = e.getKeyCode();
+    if(a == KeyEvent.VK_UP || a == KeyEvent.VK_NUMPAD8){
+      //   rotate(1);
+      System.out.println("rotate c");
     }
-    */
+    if(a == KeyEvent.VK_RIGHT || a == KeyEvent.VK_NUMPAD6){
+      //   move(1);
+      // for (int x = 0 ; x < curShape.length;x++){
+      //	 curShape[x].translate(1,0);
+      // }
+      System.out.println("right");
+    }
+    if(a == KeyEvent.VK_LEFT || a == KeyEvent.VK_NUMPAD4){
+      //     move(-1);
+      // for (int x = 0 ; x < curShape.length;x++){
+      //	 curShape[x].translate(-1,0);
+      // }
+      System.out.println("left");
+    }
+    if(a == KeyEvent.VK_DOWN || a == KeyEvent.VK_NUMPAD2){
+      // faster move down
+      System.out.println("down");
+    }
+    if(a == KeyEvent.VK_SPACE || a == KeyEvent.VK_NUMPAD5){
+      // instant drop
+      System.out.println("drop");
+    }
+    if(a == KeyEvent.VK_Z){
+      // rotate(-1);
+      System.out.println("rotate cc");
+    }
+     if(a == KeyEvent.VK_P){
+      // pause
+      System.out.println("pause");
+    }
+  }
 
     public static void main(String[] args){
 	new GameBoard();
 	System.out.println();
 	
     }
-}
- 
-  
