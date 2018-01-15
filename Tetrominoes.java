@@ -72,6 +72,7 @@ public class Tetrominoes{
 
   }
 
+  /*
   // up or 8 clockwise
   // z counterclockwise
   public void rotate(int a){
@@ -90,7 +91,7 @@ public class Tetrominoes{
     }
 
   }
-
+  */
   public int getOrientation(){ return orientation; }
   public int getCurrentBlock(){ return currentBlock; }
 
