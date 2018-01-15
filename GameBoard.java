@@ -112,6 +112,9 @@ public class GameBoard extends JFrame implements ActionListener,KeyListener{
     }
     if(a == KeyEvent.VK_DOWN || a == KeyEvent.VK_NUMPAD2){
       // faster move down
+      for (int x = 0 ; x < curShape.length;x++){
+        curShape[x].translate(0,1);
+      }
       System.out.println("down");
     }
     if(a == KeyEvent.VK_SPACE || a == KeyEvent.VK_NUMPAD5){
