@@ -81,7 +81,6 @@ public class GameBoard extends JLabel {
 	newPiece();
     }
     
-    @Override
     public void paintComponent(Graphics g){
 	g.fillRect(0,0,25 * BOARD_WIDTH,25 * BOARD_LENGTH);
 	for(int i = 0; i <10; i++){
@@ -111,7 +110,7 @@ public class GameBoard extends JLabel {
 	a.makeBoard();
 	f.add(a);
 	new Thread() {
-	    @Override public void run() {
+	    public void run() {
 		while (true) {
 		    try {
 			Thread.sleep(1000);
