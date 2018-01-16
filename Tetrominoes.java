@@ -7,7 +7,7 @@ public class Tetrominoes{
   // [currentBlock][orientation][point]
   // all four orientations, clockwise
   // for each point, fill rect, color in Color[]
-  private Point[][][] Tetrominoes = {
+  private Point[][][] Shapes = {
     // Z shape
     {
       { new Point(1, 0), new Point(2, 0), new Point(0, 1), new Point(1, 1) },
@@ -93,7 +93,8 @@ public class Tetrominoes{
   }
   */
   public int getOrientation(){ return orientation; }
-  public int getCurrentBlock(){ return currentBlock; }
+  public Point[][] getBlock(int x){ return Shapes[x]; }
+  public Color getColor(int x){ return tetroColors[x]; }
 
   /*
   public static void main(String[] args){
