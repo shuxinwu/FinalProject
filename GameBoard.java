@@ -32,48 +32,47 @@ public class GameBoard extends JLabel {
     }
 
     public void makeBoard(){
-	board = new Color [10][20];
+	board = new Color [10][22];
 	for (int i = 0; i < 10; i++){
-	    for (int x = 0; x < 20; x++){
+	    for (int x = 0; x < 21; x++){
+		if(x == 20){
+		    board[i][x] = Color.WHITE;
+		}
 		board [i][x] = Color.BLACK;
 	    }
 	}
-	newPiece();
+   	newPiece();
     }
 
     
-    
 
     public void newPiece(){
-	pieceLoc = new Point(5,2);
+	pieceLoc = new Point(5,1);
 	orientation = 0;
 	curShape = nextShape;
 	nextShape = (int)(Math.random()*6);
 	
     }
+    
     public void moveDown(){
 	if (!collision(pieceLoc.x, pieceLoc.y + 1, orientation)) {
 	    pieceLoc.y += 1;
 	} else {
 	    stick();
+	    newPiece();
 	}	
 	repaint();
     }
     
    public boolean collision(int x,int y, int rotate){
 	for(int i = 0; i< 4; i++){
-	    if (board [shape.getBlock(curShape)[rotate][i].x+ pieceLoc.x][shape.getBlock(curShape)[rotate][i].y+pieceLoc.y] != Color.BLACK );{
+	    if (board [shape.getBlock(curShape)[rotate][i].x + x][shape.getBlock(curShape)[rotate][i].y + y] != Color.BLACK ){
 		return true;
 	    }
 	}
 	return false;
 	}
     
-     public void draw(Graphics g){
-	 g.setColor(shape.getColor(curShape));
-	 for(int i = 0; i < shape.getBlock(curShape)[0].length; i++){
-	     g.fillRect((shape.getBlock(curShape)[0][i].x+ pieceLoc.x) * 25,(shape.getBlock(curShape)[0][i].y+pieceLoc.y) * 25,25,25);}
-     }
 
     public void stick(){
 	for (int i = 0; i< shape.getBlock(curShape)[0].length; i++ ) {
@@ -86,7 +85,7 @@ public class GameBoard extends JLabel {
     public void paintComponent(Graphics g){
 	g.fillRect(0,0,25 * BOARD_WIDTH,25 * BOARD_LENGTH);
 	for(int i = 0; i <10; i++){
-	    for(int x = 0; x< 20; x++){
+	    for(int x = 0; x< 21; x++){
 		g.setColor(board[i][x]);
 		g.fillRect(25* i , 25 * x, 25,25);
 	    }
@@ -94,14 +93,18 @@ public class GameBoard extends JLabel {
 	draw(g);
     }
 
-
+     public void draw(Graphics g){
+	 g.setColor(shape.getColor(curShape));
+	 for(int i = 0; i < shape.getBlock(curShape)[0].length; i++){
+	     g.fillRect((shape.getBlock(curShape)[0][i].x+ pieceLoc.x) * 25,(shape.getBlock(curShape)[0][i].y+pieceLoc.y) * 25,25,25);}
+     }
 
     
 
     public static void main(String[] args){
 	JFrame f = new JFrame();
 	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	f.setSize(500,1000);
+	f.setSize(500,700);
 	f.setTitle("Tetris");
 	f.setVisible(true);
 	GameBoard a = new GameBoard();
