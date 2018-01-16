@@ -60,13 +60,12 @@ public class Tetrominoes{
 
     };
 
-    private Color[] tetroColors = { Color.red, Color.green, Color.pink, Color.cyan, Color.yellow, Color.orange, Color.blue };
+    private Color[] tetroColors = { Color.RED, Color.GREEN, Color.PINK, Color.CYAN, Color.YELLOW, Color.ORANGE, Color.BLUE };
 
     private int currentBlock;
     private int orientation;
 
     public Tetrominoes(){
-	currentBlock = (int)(Math.random() * 6);
 	orientation = 0;
 
     }
@@ -90,9 +89,12 @@ public class Tetrominoes{
 
     }
 
-    public int getOrientation(){ return orientation; }
-    public Point[][] getCurrentBlock(){ return Shapes[currentBlock]; }
-    public Color getColor(){return tetroColors[currentBlock];}
+    public int getOrientation(){
+	return orientation; }
+    public Point[][] getBlock(int x ){
+	return Shapes[x]; }
+    public Color getColor(int x ){
+	return tetroColors[x];}
     /*
       public static void main(String[] args){
       Tetrominoes test = new Tetrominoes();
@@ -117,11 +119,13 @@ public class Tetrominoes{
       }
     */
     public static void main(String[] args){
-	String s= "";
-    	Tetrominoes a = new Tetrominoes();
-	for (int x =0; x< a.getCurrentBlock()[0].length;x ++){
-	    s += a.getCurrentBlock()[0][x];
+	/*	Tetrominoes a =new Tetrominoes();
+	String s = "";
+	int r = (int)(Math.random()*6);
+	for (int i = 0; i < a.getBlock(r)[0].length;i++){
+	    s += a.getBlock(r)[0][i].toString();
 	}
-	System.out.println(s );
+	System.out.println(s);
+	}*/
     }
 }
