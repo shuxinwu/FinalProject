@@ -5,7 +5,7 @@ import java.awt.Point;
 
 
 public class GameBoard extends JLabel implements KeyListener{
-  private static final int BOARD_WIDTH = 10;
+    private static final int BOARD_WIDTH = 10;
     private static final int BOARD_LENGTH = 21;
 
     private Tetrominoes shape;
@@ -21,11 +21,11 @@ public class GameBoard extends JLabel implements KeyListener{
     }
 
     public void makeBoard(){
-	board = new Color [10][21];
+	board = new Color [BOARD_WIDTH][BOARD_LENGTH];
 	for (int i = 0; i < 10; i++){
 	    for (int x = 0; x < 21; x++){
 		if(x == 20){
-		    board[i][x] = Color.WHITE;
+		    board[i][x] = Color.GRAY;
 		}
 		board [i][x] = Color.BLACK;
 	    }
@@ -47,10 +47,10 @@ public class GameBoard extends JLabel implements KeyListener{
 
     public void clearLines(){
 	
-	for(int i = BOARD_LENGTH - 1;i >= 0; i--){
+	for(int i = BOARD_LENGTH -1 ;i > 0; i--){
 	    boolean fill = true;
 	    for(int x = 0; x < BOARD_WIDTH - 1; x++){
-		if(board[i][x] == Color.BLACK){
+		if(board[x][i] == Color.BLACK){
 		    fill = false;
 		}
 	    }
@@ -172,7 +172,7 @@ public class GameBoard extends JLabel implements KeyListener{
 	    @Override public void run() {
 		while (true) {
 		    try {
-			Thread.sleep(1000);
+			Thread.sleep(400);
 			a.moveDown();
 			a.clearLines();
 		    } catch ( InterruptedException e ) {}
