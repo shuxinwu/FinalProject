@@ -6,7 +6,7 @@ import java.awt.Point;
 
 public class GameBoard extends JLabel implements KeyListener{
   private static final int BOARD_WIDTH = 10;
-    private static final int BOARD_LENGTH = 20;
+    private static final int BOARD_LENGTH = 21;
 
     private Tetrominoes shape;
     private int curShape;
@@ -21,7 +21,7 @@ public class GameBoard extends JLabel implements KeyListener{
     }
 
     public void makeBoard(){
-	board = new Color [10][22];
+	board = new Color [10][21];
 	for (int i = 0; i < 10; i++){
 	    for (int x = 0; x < 21; x++){
 		if(x == 20){
@@ -38,13 +38,31 @@ public class GameBoard extends JLabel implements KeyListener{
     
 
     public void newPiece(){
-	pieceLoc = new Point(5,1);
+	pieceLoc = new Point(5,0);
 	orientation = 0;
 	curShape = nextShape;
 	nextShape = (int)(Math.random()*6);
 
     }
 
+    public void clearLines(){
+	
+	for(int i = BOARD_LENGTH - 1;i >= 0; i--){
+	    boolean fill = true;
+	    for(int x = 0; x < BOARD_WIDTH - 1; x++){
+		if(board[i][x] == Color.BLACK){
+		    fill = false;
+		}
+	    }
+	    if(fill){
+		for(int j = 0; j <BOARD_WIDTH -1; j ++){
+		    board[i][j] = board[i-1][j];
+		}
+	    }
+	    repaint();
+	}
+    }
+    
     public void moveDown(){
 	if (!collision(pieceLoc.x, pieceLoc.y + 1, orientation)) {
 	    pieceLoc.y += 1;
@@ -146,7 +164,6 @@ public class GameBoard extends JLabel implements KeyListener{
 	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	f.setSize(500,700);
 	f.setTitle("Tetris");
-	f.setVisible(true);
 	GameBoard a = new GameBoard();
 	a.makeBoard();
 	f.add(a);
@@ -157,9 +174,11 @@ public class GameBoard extends JLabel implements KeyListener{
 		    try {
 			Thread.sleep(1000);
 			a.moveDown();
+			a.clearLines();
 		    } catch ( InterruptedException e ) {}
 		}
 	    }
 	}.start();
+	f.setVisible(true);
     }
 }
