@@ -33,8 +33,7 @@ public class GameBoard extends JLabel implements KeyListener{
         if( x == 20 ){
           board[i][x] = Color.GRAY;
         }
-        else{
-        board [i][x] = Color.BLACK;
+        else{board [i][x] = Color.BLACK;}
 	    }
       }
     }
@@ -63,29 +62,23 @@ public class GameBoard extends JLabel implements KeyListener{
 
   }
   
-  public void clearLines(){
-    try{
-    for(int i = BOARD_LENGTH -1 ;i > 0; i--){
-	    boolean fill = true;
-	    for(int x = 0; x < BOARD_WIDTH - 1; x++){
-        if(board[x][i] == Color.BLACK){
-          fill = false;
-        }
-	    }
-	    if(fill){
-        for(int j = 0; j <BOARD_WIDTH -1; j ++){
-          board[i][j] = board[i-1][j];
-        }
-	    }
-    }
-    }
-    catch (ArrayIndexOutOfBoundsException e){
-      
-    }
-      
-      //  countScore( number of lines cleared );
-	    repaint();
-   
+  public void clearLines(){	
+      for(int i = BOARD_LENGTH -2 ;i > 0; i--){
+	  boolean fill = true;
+	  for(int x = 0; x < BOARD_WIDTH - 1; x++){
+	      if(board[x][i] == Color.BLACK){
+		  fill = false;
+	      }
+	  }
+	  if(fill){
+	      for(int j = 0; j <BOARD_WIDTH -1; j ++){
+		  board[j][i] = board[j][i-1];
+	      }
+	  }
+	  //  countScore( number of lines cleared );
+	  repaint();
+      }
+>>>>>>> da2efd2e9eae633b15a310c85ef5b00e1642fe77
   }
     
   public void moveDown(){
@@ -108,7 +101,10 @@ public class GameBoard extends JLabel implements KeyListener{
   }
   
   public void stick(){
+<<<<<<< HEAD
    
+=======
+>>>>>>> da2efd2e9eae633b15a310c85ef5b00e1642fe77
     for (int i = 0; i< shape.getBlock(curShape)[orientation].length; i++ ) {
 	    board[pieceLoc.x + shape.getBlock(curShape)[orientation][i].x][shape.getBlock(curShape)[orientation][i].y+ pieceLoc.y] = shape.getColor(curShape);
     }
