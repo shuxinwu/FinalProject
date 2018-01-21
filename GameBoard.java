@@ -146,8 +146,8 @@ public class GameBoard extends JLabel implements KeyListener{
     movePiece(-1,0);
 	}
 	if(a == KeyEvent.VK_DOWN || a == KeyEvent.VK_NUMPAD2){
-    // faster move down
     movePiece(0,2);
+    score += 20;
 	}
 	if(a == KeyEvent.VK_SPACE || a == KeyEvent.VK_NUMPAD5){
     // instant drop
