@@ -17,7 +17,6 @@ public class GameBoard extends JLabel implements KeyListener{
 
   private int score;
   private int totalLines;
-  private int linesCleared;
   private boolean tetris;
   
   public GameBoard(){
@@ -66,6 +65,7 @@ public class GameBoard extends JLabel implements KeyListener{
           board[i][j] = board[i-1][j];
         }
 	    }
+      //  countScore( number of lines cleared );
 	    repaint();
     }
   }
@@ -94,7 +94,7 @@ public class GameBoard extends JLabel implements KeyListener{
     for (int i = 0; i< shape.getBlock(curShape)[0].length; i++ ) {
 	    board[pieceLoc.x + shape.getBlock(curShape)[0][i].x][shape.getBlock(curShape)[0][i].y+ pieceLoc.y] = shape.getColor(curShape);
     }
-    //   score += 50;
+    score += 50;
     newPiece();
   }
 
@@ -109,8 +109,8 @@ public class GameBoard extends JLabel implements KeyListener{
       }
 
       g.setColor(Color.WHITE);
-      g.drawString("Score: "+ Integer.toString(score), 12, 12);
-      g.drawString("Lines: "+ Integer.toString(totalLines), 150, 12);
+      g.drawString("Score: "+ score, 12, 12);
+      g.drawString("Lines: "+ totalLines, 150, 12);
       draw(g);
     }
 
@@ -169,6 +169,7 @@ public class GameBoard extends JLabel implements KeyListener{
     f.setVisible(true);
   }
 
+  // after lines are cleared
   public void CountScore(int l){
     if (l == 1){
       score+= 100;
@@ -189,7 +190,7 @@ public class GameBoard extends JLabel implements KeyListener{
       score+= 800;
       tetris = true;
     }
-    linesCleared+= l;
+    totalLines += l;
   }
 
 }
