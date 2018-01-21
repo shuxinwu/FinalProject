@@ -30,16 +30,19 @@ public class GameBoard extends JLabel implements KeyListener{
     board = new Color [BOARD_WIDTH][BOARD_LENGTH];
     for (int i = 0; i < 10; i++){
 	    for (int x = 0; x < 21; x++){
-        if(x == 20){
+        if( x == 20 ){
           board[i][x] = Color.GRAY;
         }
+        else{
         board [i][x] = Color.BLACK;
 	    }
+      }
     }
     newPiece();
   }
   
   public void movePiece(int x, int y){
+    if (!collision(pieceLoc.x + x, pieceLoc.y + y, orientation)){
     if (x == 0){
       pieceLoc.y += y;
     }
@@ -49,10 +52,11 @@ public class GameBoard extends JLabel implements KeyListener{
     if (x == -1){
       pieceLoc.x -= 1;
     }
+    }
   }
   
   public void newPiece(){
-    pieceLoc = new Point(5,0);
+    pieceLoc = new Point(4,0);
     orientation = 0;
     curShape = nextShape;
     nextShape = (int)(Math.random()*6);
@@ -60,7 +64,7 @@ public class GameBoard extends JLabel implements KeyListener{
   }
   
   public void clearLines(){
-	
+    try{
     for(int i = BOARD_LENGTH -1 ;i > 0; i--){
 	    boolean fill = true;
 	    for(int x = 0; x < BOARD_WIDTH - 1; x++){
@@ -73,41 +77,49 @@ public class GameBoard extends JLabel implements KeyListener{
           board[i][j] = board[i-1][j];
         }
 	    }
+    }
+    }
+    catch (ArrayIndexOutOfBoundsException e){
+      
+    }
+      
       //  countScore( number of lines cleared );
 	    repaint();
-    }
+   
   }
     
   public void moveDown(){
     if (!collision(pieceLoc.x, pieceLoc.y + 1, orientation)) {
 	    pieceLoc.y += 1;
     } else {
-	    stick();
-	    newPiece();
+        stick();
+      
     }
     repaint();
     }
 
   public boolean collision(int x,int y, int rotate){
     for(int i = 0; i< 4; i++){
-	    if (board [shape.getBlock(curShape)[rotate][i].x + x][shape.getBlock(curShape)[rotate][i].y + y] != Color.BLACK ){
+        if (board [shape.getBlock(curShape)[rotate][i].x + x][shape.getBlock(curShape)[rotate][i].y + y] != Color.BLACK){
         return true;
 	    }
-    }
+      }
     return false;
   }
-
-
+  
   public void stick(){
-    for (int i = 0; i< shape.getBlock(curShape)[0].length; i++ ) {
-	    board[pieceLoc.x + shape.getBlock(curShape)[0][i].x][shape.getBlock(curShape)[0][i].y+ pieceLoc.y] = shape.getColor(curShape);
+   
+    for (int i = 0; i< shape.getBlock(curShape)[orientation].length; i++ ) {
+	    board[pieceLoc.x + shape.getBlock(curShape)[orientation][i].x][shape.getBlock(curShape)[orientation][i].y+ pieceLoc.y] = shape.getColor(curShape);
     }
     score += 50;
     newPiece();
-  }
+    }
+   
+   
 
-    @Override
-    public void paintComponent(Graphics g){
+  @Override
+  public void paintComponent(Graphics g){
       g.fillRect(0,0,26 * BOARD_WIDTH,26 * BOARD_LENGTH);
       for(int i = 0; i <10; i++){
         for(int x = 0; x< 21; x++){
