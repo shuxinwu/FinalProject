@@ -131,20 +131,32 @@ public class GameBoard extends JLabel implements KeyListener{
     orientation--;
     }
     if(a == KeyEvent.VK_RIGHT || a == KeyEvent.VK_NUMPAD6){
-      pieceLoc.x += 1;
+      movePiece(1,0);
     }
 	if(a == KeyEvent.VK_LEFT || a == KeyEvent.VK_NUMPAD4){
-    pieceLoc.x -= 1;
+    movePiece(-1,0);
 	}
 	if(a == KeyEvent.VK_DOWN || a == KeyEvent.VK_NUMPAD2){
     // faster move down
-    pieceLoc.y += 2;
+    movePiece(0,2);
 	}
 	if(a == KeyEvent.VK_SPACE || a == KeyEvent.VK_NUMPAD5){
     // instant drop
     System.out.println("drop");
 	}
    }
+
+  public void movePiece(int x, int y){
+    if (x == 0){
+      pieceLoc.y += y;
+    }
+    if (x == 1){
+      pieceLoc.x += 1;
+    }
+    if (x == -1){
+      pieceLoc.x -= 1;
+    }
+  }
 
   public static void main(String[] args){
     JFrame f = new JFrame();
