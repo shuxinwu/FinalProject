@@ -117,6 +117,7 @@ public class GameBoard extends JLabel implements KeyListener{
       }
 
       g.setColor(Color.BLACK);
+      g.setFont(new Font("SansSerif", Font.PLAIN, 20));
       g.drawString("Score: "+ score, 300, 120);
       g.drawString("Lines: "+ totalLines, 300, 220);
       draw(g);
@@ -179,23 +180,15 @@ public class GameBoard extends JLabel implements KeyListener{
 
   // after lines are cleared
   public void CountScore(int l){
-    if (l == 1){
-      score+= 100;
-      tetris = false;
-    }
-    if (l == 2){
-      score+= 200;
-      tetris = false;
-    }
-    if (l == 3){
-      score+= 400;
+    if (l < 4){
+      score += l*100;
       tetris = false;
     }
     if (l == 4){
       if (tetris){
-        score+= 1600;
+        score += 1600;
       }
-      score+= 800;
+      score += 800;
       tetris = true;
     }
     totalLines += l;
