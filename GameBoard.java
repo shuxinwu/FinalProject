@@ -36,7 +36,7 @@ public class GameBoard extends JLabel implements KeyListener{
         else{board [i][x] = Color.BLACK;}
 	    }
       }
-    }
+   
     newPiece();
   }
   
@@ -78,7 +78,6 @@ public class GameBoard extends JLabel implements KeyListener{
 	  //  countScore( number of lines cleared );
 	  repaint();
       }
->>>>>>> da2efd2e9eae633b15a310c85ef5b00e1642fe77
   }
     
   public void moveDown(){
@@ -101,10 +100,7 @@ public class GameBoard extends JLabel implements KeyListener{
   }
   
   public void stick(){
-<<<<<<< HEAD
-   
-=======
->>>>>>> da2efd2e9eae633b15a310c85ef5b00e1642fe77
+
     for (int i = 0; i< shape.getBlock(curShape)[orientation].length; i++ ) {
 	    board[pieceLoc.x + shape.getBlock(curShape)[orientation][i].x][shape.getBlock(curShape)[orientation][i].y+ pieceLoc.y] = shape.getColor(curShape);
     }
