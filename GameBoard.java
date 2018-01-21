@@ -14,10 +14,17 @@ public class GameBoard extends JLabel implements KeyListener{
   private int orientation;
   private Point pieceLoc;
   private Color[][] board;
-	
+
+  private int score;
+  private int totalLines;
+  private int linesCleared;
+  private boolean tetris;
+  
   public GameBoard(){
     shape = new  Tetrominoes();
     nextShape = (int)(Math.random()*6);
+    score = 0;
+    totalLines = 0;
   }
 
   public void makeBoard(){
@@ -87,6 +94,7 @@ public class GameBoard extends JLabel implements KeyListener{
     for (int i = 0; i< shape.getBlock(curShape)[0].length; i++ ) {
 	    board[pieceLoc.x + shape.getBlock(curShape)[0][i].x][shape.getBlock(curShape)[0][i].y+ pieceLoc.y] = shape.getColor(curShape);
     }
+    //   score += 50;
     newPiece();
   }
 
@@ -99,6 +107,10 @@ public class GameBoard extends JLabel implements KeyListener{
           g.fillRect(26* i , 26 * x, 25,25);
         }
       }
+
+      g.setColor(Color.WHITE);
+      g.drawString("Score: "+ Integer.toString(score), 12, 12);
+      g.drawString("Lines: "+ Integer.toString(totalLines), 150, 12);
       draw(g);
     }
 
@@ -117,23 +129,16 @@ public class GameBoard extends JLabel implements KeyListener{
       orientation = 4;
     }
     orientation--;
-
-	    //   curShape = Tetrominoes[orientation];
-	    //     System.out.println(getOrientation());
-	    System.out.println("rotate");
     }
     if(a == KeyEvent.VK_RIGHT || a == KeyEvent.VK_NUMPAD6){
       pieceLoc.x += 1;
-      System.out.println("right");
     }
 	if(a == KeyEvent.VK_LEFT || a == KeyEvent.VK_NUMPAD4){
     pieceLoc.x -= 1;
-    System.out.println("left");
 	}
 	if(a == KeyEvent.VK_DOWN || a == KeyEvent.VK_NUMPAD2){
     // faster move down
     pieceLoc.y += 2;
-    System.out.println("down");
 	}
 	if(a == KeyEvent.VK_SPACE || a == KeyEvent.VK_NUMPAD5){
     // instant drop
@@ -163,4 +168,28 @@ public class GameBoard extends JLabel implements KeyListener{
     }.start();
     f.setVisible(true);
   }
+
+  public void CountScore(int l){
+    if (l == 1){
+      score+= 100;
+      tetris = false;
+    }
+    if (l == 2){
+      score+= 200;
+      tetris = false;
+    }
+    if (l == 3){
+      score+= 400;
+      tetris = false;
+    }
+    if (l == 4){
+      if (tetris){
+        score+= 1600;
+      }
+      score+= 800;
+      tetris = true;
+    }
+    linesCleared+= l;
+  }
+
 }
