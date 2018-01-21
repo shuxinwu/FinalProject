@@ -61,8 +61,7 @@ public class Tetrominoes{
     };
 
     private Color[] tetroColors = { Color.RED, Color.GREEN, Color.PINK, Color.CYAN, Color.YELLOW, Color.ORANGE, Color.BLUE };
-
-    private int currentBlock;
+    
     private int orientation;
 
     public Tetrominoes(){
@@ -89,43 +88,35 @@ public class Tetrominoes{
 
     }
 
-    public int getOrientation(){
-	return orientation; }
-    public Point[][] getBlock(int x ){
-	return Shapes[x]; }
-    public Color getColor(int x ){
-	return tetroColors[x];}
-    /*
-      public static void main(String[] args){
-      Tetrominoes test = new Tetrominoes();
-      System.out.println(test.getOrientation());
-      test.rotate(-1);
-      System.out.println(test.getOrientation());
-      System.out.println(test.getCurrentBlock());
 
-      }
 
-      // right left keys
-      // +1 right -1 left
-      public void move(int a){
-      // if not at board edges
+    
+	public int getOrientation(){ return orientation; }
+    public Point[][] getBlock(int x){ return Shapes[x]; }
+    public Color getColor(int x){ return tetroColors[x]; }
 
-      if (a == 1){
 
-      }
-      if (a == -1){
+    // right left keys
+    // +1 right -1 left
+    public void move(int a){
+	// if not at board edges
 
-      }
-      }
-    */
-    public static void main(String[] args){
-	/*	Tetrominoes a =new Tetrominoes();
-	String s = "";
-	int r = (int)(Math.random()*6);
-	for (int i = 0; i < a.getBlock(r)[0].length;i++){
-	    s += a.getBlock(r)[0][i].toString();
+	if (a == 1){
+
 	}
-	System.out.println(s);
-	}*/
+	if (a == -1){
+
+	}
     }
+    
+	public static void main(String[] args){
+	    /*	Tetrominoes a =new Tetrominoes();
+		String s = "";
+		int r = (int)(Math.random()*6);
+		for (int i = 0; i < a.getBlock(r)[0].length;i++){
+		s += a.getBlock(r)[0][i].toString();
+		}
+		System.out.println(s);
+		}*/
+	}
 }
