@@ -21,7 +21,7 @@ public class GameBoard extends JLabel implements KeyListener{
   
     public GameBoard(){
 	shape = new  Tetrominoes();
-	nextShape = (int)(Math.random()*6);
+	nextShape = (int)(Math.random()*7);
 	score = 0;
         LinesCleared = 0;
     }
@@ -55,7 +55,7 @@ public class GameBoard extends JLabel implements KeyListener{
 	pieceLoc = new Point(4,0);
 	orientation = 0;
 	curShape = nextShape;
-	nextShape = (int)(Math.random()*6);
+	nextShape = (int)(Math.random()*7);
 
     }
   
