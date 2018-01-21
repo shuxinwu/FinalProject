@@ -59,7 +59,8 @@ public class GameBoard extends JLabel implements KeyListener{
 
     }
   
-    public void clearLines(){	
+    public void clearLines(){
+      int cleared = 0;
 	for(int i = BOARD_LENGTH - 1 ;i > 0; i--){
 	    boolean fill = true;
 	    for(int x = 0; x < BOARD_WIDTH - 1; x++){
@@ -74,10 +75,12 @@ public class GameBoard extends JLabel implements KeyListener{
 		    }
 		}
 		i++;
+    cleared++;
 	        LinesCleared++;
 	    }
 	    repaint();
 	}
+  countScore(cleared);
     }
     
     public void moveDown(){
@@ -186,7 +189,7 @@ public class GameBoard extends JLabel implements KeyListener{
     }
 
     // after lines are cleared
-    public void CountScore(int l){
+    public void countScore(int l){
 	if (l < 4){
 	    score += l*100;
 	    tetris = false;
@@ -198,7 +201,6 @@ public class GameBoard extends JLabel implements KeyListener{
 	    score += 800;
 	    tetris = true;
 	}
-	LinesCleared += l;
     }
 
 
