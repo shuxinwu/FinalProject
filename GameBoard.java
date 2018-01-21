@@ -38,11 +38,19 @@ public class GameBoard extends JLabel implements KeyListener{
     }
     newPiece();
   }
-
-  public void move(){
+  
+  public void movePiece(int x, int y){
+    if (x == 0){
+      pieceLoc.y += y;
+    }
+    if (x == 1){
+      pieceLoc.x += 1;
+    }
+    if (x == -1){
+      pieceLoc.x -= 1;
+    }
   }
-    
-
+  
   public void newPiece(){
     pieceLoc = new Point(5,0);
     orientation = 0;
@@ -108,9 +116,9 @@ public class GameBoard extends JLabel implements KeyListener{
         }
       }
 
-      g.setColor(Color.WHITE);
-      g.drawString("Score: "+ score, 12, 12);
-      g.drawString("Lines: "+ totalLines, 150, 12);
+      g.setColor(Color.BLACK);
+      g.drawString("Score: "+ score, 300, 120);
+      g.drawString("Lines: "+ totalLines, 300, 220);
       draw(g);
     }
 
@@ -145,18 +153,6 @@ public class GameBoard extends JLabel implements KeyListener{
     System.out.println("drop");
 	}
    }
-
-  public void movePiece(int x, int y){
-    if (x == 0){
-      pieceLoc.y += y;
-    }
-    if (x == 1){
-      pieceLoc.x += 1;
-    }
-    if (x == -1){
-      pieceLoc.x -= 1;
-    }
-  }
 
   public static void main(String[] args){
     JFrame f = new JFrame();
