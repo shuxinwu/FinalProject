@@ -113,53 +113,33 @@ public class GameBoard extends JLabel implements KeyListener{
   public void keyPressed(KeyEvent e){
     int a = e.getKeyCode();
     if(a == KeyEvent.VK_UP || a == KeyEvent.VK_NUMPAD8){
-	    //   rotate(1);
-	    if (orientation == 3){
-        orientation = -1;
-	    }
-	    orientation++;
+	    if (orientation == 0){
+      orientation = 4;
+    }
+    orientation--;
 
 	    //   curShape = Tetrominoes[orientation];
 	    //     System.out.println(getOrientation());
-	    System.out.println("rotate c");
+	    System.out.println("rotate");
     }
     if(a == KeyEvent.VK_RIGHT || a == KeyEvent.VK_NUMPAD6){
-      for (int x = 0 ; x < shape.getBlock(curShape)[orientation].length ;x++){
-        //  shape.getBlock(curShape)[orientation][x].translate(1,0);
-        pieceLoc.x += 1;
-      }
+      pieceLoc.x += 1;
       System.out.println("right");
     }
 	if(a == KeyEvent.VK_LEFT || a == KeyEvent.VK_NUMPAD4){
-    for (int x = 0 ; x < shape.getBlock(curShape)[orientation].length;x++){
-      //   shape.getBlock(curShape)[orientation][x].translate(-1,0);
-      pieceLoc.x -= 1;
-    }
+    pieceLoc.x -= 1;
     System.out.println("left");
 	}
 	if(a == KeyEvent.VK_DOWN || a == KeyEvent.VK_NUMPAD2){
     // faster move down
-    for (int x = 0 ; x < shape.getBlock(curShape)[orientation].length;x++){
-      shape.getBlock(curShape)[orientation][x].translate(0,1);
-    }
+    pieceLoc.y += 2;
     System.out.println("down");
 	}
 	if(a == KeyEvent.VK_SPACE || a == KeyEvent.VK_NUMPAD5){
     // instant drop
     System.out.println("drop");
 	}
-	if(a == KeyEvent.VK_Z){
-    // rotate(-1);
-    if (orientation == 0){
-      orientation = 4;
-    }
-    orientation--;
-
-    //   curShape = Tetrominoes[orientation];
-    //   System.out.println(getOrientation());
-    System.out.println("rotate cc");
-	}
-    }
+   }
 
   public static void main(String[] args){
     JFrame f = new JFrame();
