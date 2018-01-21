@@ -21,7 +21,7 @@ public class GameBoard extends JLabel implements KeyListener{
   
     public GameBoard(){
 	shape = new  Tetrominoes();
-	nextShape = (int)(Math.random()*6);
+	nextShape = (int)(Math.random()*7);
 	score = 0;
         LinesCleared = 0;
     }
@@ -55,7 +55,7 @@ public class GameBoard extends JLabel implements KeyListener{
 	pieceLoc = new Point(4,0);
 	orientation = 0;
 	curShape = nextShape;
-	nextShape = (int)(Math.random()*6);
+	nextShape = (int)(Math.random()*7);
 
     }
   
@@ -63,14 +63,14 @@ public class GameBoard extends JLabel implements KeyListener{
       int cleared = 0;
 	for(int i = BOARD_LENGTH - 1 ;i > 0; i--){
 	    boolean fill = true;
-	    for(int x = 0; x < BOARD_WIDTH - 1; x++){
+	    for(int x = 0; x < BOARD_WIDTH ; x++){
 		if(board[x][i] == Color.BLACK){
 		    fill = false;
 		}
 	    }
 	    if(fill){
 		for(int y = i; y > 0;y--){
-		    for(int j = 0; j <BOARD_WIDTH - 1; j ++){
+		    for(int j = 0; j <BOARD_WIDTH; j ++){
 			board[j][y] = board[j][y-1];
 		    }
 		}
@@ -82,7 +82,15 @@ public class GameBoard extends JLabel implements KeyListener{
 	}
   countScore(cleared);
     }
-    
+
+    public boolean GameOver(){
+	for(int x  = 0;x < BOARD_WIDTH; x++){
+	    if (board[x][1] != Color.BLACK){
+		return true;
+	    }
+	}
+	return false;
+    }
     public void moveDown(){
 	if (!collision(pieceLoc.x, pieceLoc.y + 1, orientation)) {
 	    pieceLoc.y += 1;
@@ -175,8 +183,8 @@ public class GameBoard extends JLabel implements KeyListener{
 	f.add(a);
 	f.addKeyListener(a);
 	new Thread() {
-	    @Override public void run() {
-		while (true) {
+	    public void run() {
+		while (!a.GameOver()) {
 		    try {
 			Thread.sleep(400);
 			a.moveDown();
