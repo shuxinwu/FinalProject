@@ -21,7 +21,7 @@ public class GameBoard extends JLabel implements KeyListener{
     private Color[][] Next;
     
     public GameBoard(){
-
+      
 	shape = new  Tetrominoes();
 	nextShape = (int)(Math.random()*7);
 	score = 0;
@@ -29,6 +29,7 @@ public class GameBoard extends JLabel implements KeyListener{
     }
 
     public void makeBoard(){
+  
 	board = new Color [BOARD_WIDTH][BOARD_LENGTH];
 	for (int i = 0; i < 10; i++){
 	    for (int x = 0; x < 21; x++){
@@ -153,7 +154,11 @@ public class GameBoard extends JLabel implements KeyListener{
 		g.fillRect(700+ 26 * i ,300 + 26 * x, 25,25);
 	    }
 	}
-	
+
+  g.setColor(Color.ORANGE);
+	g.setFont(new Font("SansSerif", Font.BOLD, 40));
+	g.drawString("TETRIS", 300, 50);
+  
 	g.setColor(Color.BLACK);
 	g.setFont(new Font("SansSerif", Font.PLAIN, 20));
 	g.drawString("Score: "+ score, 300, 120);
@@ -199,7 +204,7 @@ public class GameBoard extends JLabel implements KeyListener{
 	    score += 20;
 	}
 	if(a == KeyEvent.VK_SPACE || a == KeyEvent.VK_NUMPAD5){
-      instDrop();
+    //    instDrop();
 	}
 if(a == KeyEvent.VK_ESCAPE){
   makeBoard();
@@ -220,7 +225,7 @@ if(a == KeyEvent.VK_ESCAPE){
 	f.addKeyListener(a);
 	new Thread() {
 	    public void run() {
-		while (!a.GameOver()) {
+        while (!a.GameOver()) {
 		    try {
 			Thread.sleep(400);
 			a.moveDown();
