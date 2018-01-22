@@ -65,33 +65,6 @@ public class Tetrominoes{
   private int currentBlock;
   private int orientation;
 
-
-  public Tetrominoes(){
-    currentBlock = (int)(Math.random() * 6);
-    orientation = 0;
-
-  }
-
-  /*
-  // up or 8 clockwise
-  // z counterclockwise
-  public void rotate(int a){
-    if (a == 1){
-      if (orientation == 3){
-        orientation = -1;
-      }
-      orientation++;
-    }
-
-    if (a == -1){
-      if (orientation == 0){
-        orientation = 4;
-      }
-      orientation--;
-    }
-
-  }
-  */
   public int getOrientation(){ return orientation; }
   public Point[][] getBlock(int x){ return Shapes[x]; }
   public Color getColor(int x){ return tetroColors[x]; }
@@ -105,20 +78,6 @@ public class Tetrominoes{
     System.out.println(test.getCurrentBlock());
 
   }
-
-  // right left keys
-  // +1 right -1 left
-  public void move(int a){
-    // if not at board edges
-
-    if (a == 1){
-
-    }
-    if (a == -1){
-
-    }
-  }
   */
-
 
 }
