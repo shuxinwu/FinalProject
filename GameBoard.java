@@ -13,13 +13,15 @@ public class GameBoard extends JLabel implements KeyListener{
     private int nextShape;
     private int orientation;
     private Point pieceLoc;
-    private Color[][] board;
+    private static Color[][] board;
 
-    private int score;
-    private int LinesCleared;
-    private boolean tetris;
+    private static int score;
+    private static int LinesCleared;
+    private static boolean tetris;
+
   
     public GameBoard(){
+
 	shape = new  Tetrominoes();
 	nextShape = (int)(Math.random()*7);
 	score = 0;
@@ -83,14 +85,15 @@ public class GameBoard extends JLabel implements KeyListener{
   countScore(cleared);
     }
 
-    public boolean GameOver(){
+    public static boolean GameOver(){
 	for(int x  = 0;x < BOARD_WIDTH; x++){
 	    if (board[x][1] != Color.BLACK){
 		return true;
 	    }
-	}
+  }
 	return false;
     }
+    
     public void moveDown(){
 	if (!collision(pieceLoc.x, pieceLoc.y + 1, orientation)) {
 	    pieceLoc.y += 1;
@@ -138,6 +141,11 @@ public class GameBoard extends JLabel implements KeyListener{
 	g.setFont(new Font("SansSerif", Font.PLAIN, 20));
 	g.drawString("Score: "+ score, 300, 120);
 	g.drawString("Lines: "+ LinesCleared, 300, 220);
+  if (GameOver()){
+    g.setColor(Color.RED);
+    g.setFont(new Font("SansSerif", Font.BOLD, 25));
+    g.drawString("GAME OVER", 300, 320);
+  }
 	draw(g);
     }
 
@@ -171,6 +179,12 @@ public class GameBoard extends JLabel implements KeyListener{
 	    // instant drop
 	    System.out.println("drop");
 	}
+if(a == KeyEvent.VK_ESCAPE){
+  makeBoard();
+  score = 0;
+  LinesCleared = 0;
+}
+
     }
 
     public static void main(String[] args){
@@ -189,7 +203,8 @@ public class GameBoard extends JLabel implements KeyListener{
 			Thread.sleep(400);
 			a.moveDown();
 			a.clearLines();
-		    } catch ( InterruptedException e ) {}
+      }
+		   catch ( InterruptedException e ) {}
 		}
 	    }
 	}.start();
