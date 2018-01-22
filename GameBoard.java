@@ -36,12 +36,14 @@ public class GameBoard extends JLabel implements KeyListener{
 		board [i][x] = Color.BLACK;
 	    }
 	}
+  /*
 	Next = new Color[4][4];
 	for (int i = 0; i < 10; i++){
 	    for (int x = 0; x < 4; x++){
 		board [i][x] = Color.BLACK;
 	    }
 }
+  */
 	newPiece();
     }
   
@@ -121,8 +123,8 @@ public class GameBoard extends JLabel implements KeyListener{
 	}
 	return false;
     }
-  
-    public void stick(){
+
+  public void stick(){
 
 	for (int i = 0; i< shape.getBlock(curShape)[orientation].length; i++ ) {
 	    board[pieceLoc.x + shape.getBlock(curShape)[orientation][i].x][shape.getBlock(curShape)[orientation][i].y+ pieceLoc.y] = shape.getColor(curShape);
@@ -146,8 +148,6 @@ public class GameBoard extends JLabel implements KeyListener{
 		g.fillRect(26* i , 26 * x, 25,25);
 	    }
 	}
-
-	g.fillRect(300,300,100,100);
 
   g.setColor(shape.getColor(nextShape));
 	for(int i = 0; i < shape.getBlock(nextShape)[0].length; i++){
