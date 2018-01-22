@@ -18,7 +18,8 @@ public class GameBoard extends JLabel implements KeyListener{
     private int score;
     private int LinesCleared;
     private boolean tetris;
-  
+    private Color[][] Next;
+    
     public GameBoard(){
 	shape = new  Tetrominoes();
 	nextShape = (int)(Math.random()*7);
@@ -33,7 +34,12 @@ public class GameBoard extends JLabel implements KeyListener{
 		board [i][x] = Color.BLACK;
 	    }
 	}
-   
+	Next = new Color[4][4];
+	for (int i = 0; i < 10; i++){
+	    for (int x = 0; x < 4; x++){
+		board [i][x] = Color.BLACK;
+	    }
+	}
 	newPiece();
     }
   
@@ -100,7 +106,7 @@ public class GameBoard extends JLabel implements KeyListener{
 
     public boolean collision(int x,int y, int rotate){
 	for(int i = 0; i< 4; i++){
-	    try{if ((board [shape.getBlock(curShape)[rotate][i].x + x][shape.getBlock(curShape)[rotate][i].y + y] != Color.BLACK) || (shape.getBlock(curShape)[rotate][i].y + y > 20 )){
+	    try{if ((board [shape.getBlock(curShape)[rotate][i].x + x][shape.getBlock(curShape)[rotate][i].y + y] != Color.BLACK) || (shape.getBlock(curShape)[rotate][i].y + y > 20 ) || (shape.getBlock(curShape)[rotate][i].x + x > 10 )){
 		return true;
 		}}
 	    catch(ArrayIndexOutOfBoundsException e){
@@ -119,9 +125,13 @@ public class GameBoard extends JLabel implements KeyListener{
 	newPiece();
     }
    
-   
+    public void instDrop(){
+	while(!collision(0,1,orientation)){
+	    moveDown();
+	}
+    }
 
-    @Override
+
     public void paintComponent(Graphics g){
 	g.fillRect(0,0,26 * BOARD_WIDTH,26 * BOARD_LENGTH);
 	for(int i = 0; i <10; i++){
@@ -131,6 +141,14 @@ public class GameBoard extends JLabel implements KeyListener{
 	    }
 	}
 
+	g.fillRect(700,300,100,100);
+	for(int i = 0; i <4; i++){
+	    for(int x = 0; x< 4; x++){
+		g.setColor(Next[i][x]);
+		g.fillRect(700+ 26 * i ,300 + 26 * x, 25,25);
+	    }
+	}
+	
 	g.setColor(Color.BLACK);
 	g.setFont(new Font("SansSerif", Font.PLAIN, 20));
 	g.drawString("Score: "+ score, 300, 120);
