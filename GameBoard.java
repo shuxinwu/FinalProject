@@ -20,33 +20,23 @@ public class GameBoard extends JLabel implements KeyListener{
     private boolean tetris;
     private Color[][] Next;
     
-    public GameBoard(){
-      
+    public GameBoard(){      
 	shape = new  Tetrominoes();
 	nextShape = (int)(Math.random()*7);
 	score = 0;
         LinesCleared = 0;
     }
-
+    //initializes the board
     public void makeBoard(){
-  
 	board = new Color [BOARD_WIDTH][BOARD_LENGTH];
 	for (int i = 0; i < 10; i++){
 	    for (int x = 0; x < 21; x++){
 		board [i][x] = Color.BLACK;
 	    }
 	}
-  /*
-	Next = new Color[4][4];
-	for (int i = 0; i < 10; i++){
-	    for (int x = 0; x < 4; x++){
-		board [i][x] = Color.BLACK;
-	    }
-}
-  */
 	newPiece();
     }
-  
+    // move piece
     public void movePiece(int x, int y){
 	if (!collision(pieceLoc.x + x, pieceLoc.y + y, orientation)){
 	    if (x == 0){
@@ -60,7 +50,7 @@ public class GameBoard extends JLabel implements KeyListener{
 	    }
 	}
     }
-  
+    // newPiece is created
     public void newPiece(){
 	pieceLoc = new Point(4,0);
 	orientation = 0;
@@ -68,7 +58,7 @@ public class GameBoard extends JLabel implements KeyListener{
 	nextShape = (int)(Math.random()*7);
 
     }
-  
+    // clear lines and move lines down
     public void clearLines(){
       int cleared = 0;
 	for(int i = BOARD_LENGTH - 1 ;i > 0; i--){
@@ -92,7 +82,7 @@ public class GameBoard extends JLabel implements KeyListener{
 	}
   countScore(cleared);
     }
-
+    // when tetris blocks reaches a certain height the game is over
     public static boolean GameOver(){
 	for(int x  = 0;x < BOARD_WIDTH; x++){
 	    if (board[x][1] != Color.BLACK){
@@ -101,7 +91,7 @@ public class GameBoard extends JLabel implements KeyListener{
   }
 	return false;
     }
-    
+    // tetrominoes moveDown
     public void moveDown(){
 	if (!collision(pieceLoc.x, pieceLoc.y + 1, orientation)) {
 	    pieceLoc.y += 1;
@@ -111,7 +101,7 @@ public class GameBoard extends JLabel implements KeyListener{
 	}
 	repaint();
     }
-
+    // checks to see if a move is possible
     public boolean collision(int x,int y, int rotate){
 	for(int i = 0; i< 4; i++){
 	    try{if ((board [shape.getBlock(curShape)[rotate][i].x + x][shape.getBlock(curShape)[rotate][i].y + y] != Color.BLACK) || (shape.getBlock(curShape)[rotate][i].y + y > 20 ) || (shape.getBlock(curShape)[rotate][i].x + x > 10 )){
@@ -123,23 +113,22 @@ public class GameBoard extends JLabel implements KeyListener{
 	}
 	return false;
     }
-
+    // embeds the piece into the board array if it touches the bottom or another piece
   public void stick(){
-
 	for (int i = 0; i< shape.getBlock(curShape)[orientation].length; i++ ) {
 	    board[pieceLoc.x + shape.getBlock(curShape)[orientation][i].x][shape.getBlock(curShape)[orientation][i].y+ pieceLoc.y] = shape.getColor(curShape);
 	}
 	score += 50;
 	newPiece();
     }
-   
+    // instantly drop the piece down
     public void instDrop(){
 	while(pieceLoc.y > 0){
 	    moveDown();
 	}
     }
 
-
+    // draws the board and make score and title
     public void paintComponent(Graphics g){
 	g.fillRect(0,0,26 * BOARD_WIDTH,26 * BOARD_LENGTH);
 	for(int i = 0; i <10; i++){
@@ -148,7 +137,7 @@ public class GameBoard extends JLabel implements KeyListener{
 		g.fillRect(26* i , 26 * x, 25,25);
 	    }
 	}
-
+	// draws nestPiece
   g.setColor(shape.getColor(nextShape));
 	for(int i = 0; i < shape.getBlock(nextShape)[0].length; i++){
 	    g.fillRect(300 + (shape.getBlock(nextShape)[0][i].x) * 26, 300 + (shape.getBlock(nextShape)[0][i].y) * 26,25,25);
@@ -162,6 +151,7 @@ public class GameBoard extends JLabel implements KeyListener{
 	g.drawString("Score: "+ score, 300, 120);
 	g.drawString("Lines: "+ LinesCleared, 300, 220);
   g.drawString("Next", 300, 290);
+  // creates GameOver Screen
   if (GameOver()){
     g.setColor(Color.RED);
     g.setFont(new Font("SansSerif", Font.BOLD, 25));
@@ -169,7 +159,7 @@ public class GameBoard extends JLabel implements KeyListener{
   }
 	draw(g);
     }
-
+    // draw the shapes
     public void draw(Graphics g){
 	g.setColor(shape.getColor(curShape));
 	for(int i = 0; i < shape.getBlock(curShape)[orientation].length; i++){
@@ -178,6 +168,7 @@ public class GameBoard extends JLabel implements KeyListener{
 
     public void keyTyped(KeyEvent e){}
     public void keyReleased(KeyEvent e){}
+    //conrtol the piece
     public void keyPressed(KeyEvent e){
 	int a = e.getKeyCode();
 	if(a == KeyEvent.VK_UP || a == KeyEvent.VK_NUMPAD8){
@@ -209,10 +200,23 @@ public class GameBoard extends JLabel implements KeyListener{
 	    makeBoard();
 	    score = 0;
 	    LinesCleared = 0;
+	    new Thread() {
+		// keeps game running unless it ends
+		public void run() {
+		    while (!GameOver()) {
+			try {
+			    Thread.sleep(400);
+			    moveDown();
+			    clearLines();
+			}
+			catch ( InterruptedException e ) {}
+		    }
+		}
+	    }.start();
 	}
 
     }
-
+    // creates the GUI
     public static void main(String[] args){
 	JFrame f = new JFrame();
 	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -223,14 +227,15 @@ public class GameBoard extends JLabel implements KeyListener{
 	f.add(a);
 	f.addKeyListener(a);
 	new Thread() {
+	    // keeps game running unless it ends
 	    public void run() {
-        while (!a.GameOver()) {
+		while (!a.GameOver()) {
 		    try {
 			Thread.sleep(400);
 			a.moveDown();
 			a.clearLines();
-      }
-		   catch ( InterruptedException e ) {}
+		    }
+		    catch ( InterruptedException e ) {}
 		}
 	    }
 	}.start();
