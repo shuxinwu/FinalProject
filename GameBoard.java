@@ -131,7 +131,7 @@ public class GameBoard extends JLabel implements KeyListener{
     }
    
     public void instDrop(){
-	while(!collision(0,1,orientation)){
+	while(pieceLoc.y > 0){
 	    moveDown();
 	}
     }
@@ -177,17 +177,17 @@ public class GameBoard extends JLabel implements KeyListener{
     public void keyPressed(KeyEvent e){
 	int a = e.getKeyCode();
 	if(a == KeyEvent.VK_UP || a == KeyEvent.VK_NUMPAD8){
-    if (orientation == 0){
-      if(!collision(pieceLoc.x, pieceLoc.y, 3)){
-		orientation = 3;
+	    if (orientation == 0){
+		if(!collision(pieceLoc.x, pieceLoc.y, 3)){
+		    orientation = 3;
+		}
 	    }
-    }
-    else{
-      if(!collision(pieceLoc.x, pieceLoc.y, orientation - 1)){
-    orientation--;
-    }
+	    else{
+		if(!collision(pieceLoc.x, pieceLoc.y, orientation - 1)){
+		    orientation--;
+		}
+	    }
 	}
-  }
 	if(a == KeyEvent.VK_RIGHT || a == KeyEvent.VK_NUMPAD6){
 	    movePiece(1,0);
 	}
@@ -199,13 +199,13 @@ public class GameBoard extends JLabel implements KeyListener{
 	    score += 20;
 	}
 	if(a == KeyEvent.VK_SPACE || a == KeyEvent.VK_NUMPAD5){
-      instDrop();
+	    instDrop();
 	}
-if(a == KeyEvent.VK_ESCAPE){
-  makeBoard();
-  score = 0;
-  LinesCleared = 0;
-}
+	if(a == KeyEvent.VK_ESCAPE){
+	    makeBoard();
+	    score = 0;
+	    LinesCleared = 0;
+	}
 
     }
 
