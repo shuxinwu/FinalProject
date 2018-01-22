@@ -160,11 +160,17 @@ public class GameBoard extends JLabel implements KeyListener{
     public void keyPressed(KeyEvent e){
 	int a = e.getKeyCode();
 	if(a == KeyEvent.VK_UP || a == KeyEvent.VK_NUMPAD8){
-	    if (orientation == 0){
-		orientation = 4;
+    if (orientation == 0){
+      if(!collision(pieceLoc.x, pieceLoc.y, 3)){
+		orientation = 3;
 	    }
-	    orientation--;
+    }
+    else{
+      if(!collision(pieceLoc.x, pieceLoc.y, orientation - 1)){
+    orientation--;
+    }
 	}
+  }
 	if(a == KeyEvent.VK_RIGHT || a == KeyEvent.VK_NUMPAD6){
 	    movePiece(1,0);
 	}
