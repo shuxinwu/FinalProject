@@ -41,7 +41,7 @@ public class GameBoard extends JLabel implements KeyListener{
 	    for (int x = 0; x < 4; x++){
 		board [i][x] = Color.BLACK;
 	    }
-	}
+}
 	newPiece();
     }
   
@@ -147,14 +147,12 @@ public class GameBoard extends JLabel implements KeyListener{
 	    }
 	}
 
-	g.fillRect(700,300,100,100);
-	for(int i = 0; i <4; i++){
-	    for(int x = 0; x< 4; x++){
-		g.setColor(Next[i][x]);
-		g.fillRect(700+ 26 * i ,300 + 26 * x, 25,25);
-	    }
-	}
+	g.fillRect(300,300,100,100);
 
+  g.setColor(shape.getColor(nextShape));
+	for(int i = 0; i < shape.getBlock(nextShape)[0].length; i++){
+	    g.fillRect(300 + (shape.getBlock(nextShape)[0][i].x) * 26, 300 + (shape.getBlock(nextShape)[0][i].y) * 26,25,25);
+  }
   g.setColor(Color.ORANGE);
 	g.setFont(new Font("SansSerif", Font.BOLD, 40));
 	g.drawString("TETRIS", 300, 50);
@@ -163,10 +161,11 @@ public class GameBoard extends JLabel implements KeyListener{
 	g.setFont(new Font("SansSerif", Font.PLAIN, 20));
 	g.drawString("Score: "+ score, 300, 120);
 	g.drawString("Lines: "+ LinesCleared, 300, 220);
+  g.drawString("Next", 300, 290);
   if (GameOver()){
     g.setColor(Color.RED);
     g.setFont(new Font("SansSerif", Font.BOLD, 25));
-    g.drawString("GAME OVER", 300, 320);
+    g.drawString("GAME OVER", 300, 520);
   }
 	draw(g);
     }
