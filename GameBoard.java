@@ -199,8 +199,7 @@ public class GameBoard extends JLabel implements KeyListener{
 	    score += 20;
 	}
 	if(a == KeyEvent.VK_SPACE || a == KeyEvent.VK_NUMPAD5){
-	    // instant drop
-	    System.out.println("drop");
+      instDrop();
 	}
 if(a == KeyEvent.VK_ESCAPE){
   makeBoard();
