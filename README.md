@@ -9,3 +9,4 @@ LEFT, 4 to move piece left
 UP, 8 to rotate piece
 DOWN, 2 to soft drop
 SPACE to hard drop
+ESCAPE to restart
